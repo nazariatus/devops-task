@@ -1,0 +1,20 @@
+{
+  "name": "api-server",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "description": "Multifunctional API server app",
+  "author": "User",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/DominicMagnus/devops-test-task.git"
+  },
+  "scripts": {
+    "start": "pm2 start --env production --no-daemon process.json"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "pm2": "^2.5.0"
+  }
+}
+

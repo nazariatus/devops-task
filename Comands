@@ -1,0 +1,25 @@
+щоб збільдити контейнер будучи в директорії app треба запустити наступну команду
+docker build -t my-node-app .
+після чого запустити для перевірки
+docker run -d -p 9007:9007 --name my-node-app my-node-app
+переконавшись, що працює перейменувати
+docker tag my-node-app nazariatus/my-node-app
+та залити на Docer Hub
+docker push nazariatus/my-node-app:latest
+
+щоб зробити контейнер для index.html треба перейти в директорію index та вписати команду
+docker build -t my-apache-container .
+Запустити, щоб перевірити чи працює
+docker run -d -p 8080:80 --name my-apache-instance my-apache-container
+
+У мене поки контейнери між собою не працюють, тому я попробуваав розгорнути контейнер nazariatus/my-node-app:latest через k8s на AWS
+Для цього треба зайти в директорію k8s та виконати наступні команди
+Щоб підняти кластр з файлу mycluster.yaml потрібно виконати наступну команду
+eksctl create cluster -f mycluster.yaml
+створиться cluster з назвою nazar-cluster який буде мітити три node з назвою worker-1 які будуть керуваатись LoadBalancer
+коли LoadBalancer створиться розгортаємо застосунок з файлу service-loadbalancer.yaml за допомогою команди
+kubectl apply -f .\service-loadbalancer.yaml
+тепер у нс працює два POD з назвою my-node-app-autoscaling які будть збільшуваатись до 6 якщо буде нагрузка на CPU більше 80 та розпреділені по трьом NODE
+через команду 
+kubectl get svc
+можна побачити EXTERNAL-IP через який буде доступ до LoadBalancer який відображає на зовні контейнер nazariatus/my-node-app:latest за портом 9007

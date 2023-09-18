@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multifunctional API | Some Company</title>
+</head>
+<body>
+  <style>
+    #api {
+      background-color: #ebeae9;
+      padding: .5em;
+    }
+  </style>
+
+  <h1>Hello!</h1>
+  <p>We are very proud to release our incredibly multifunctional API!</p>
+  <p>Request to an <code>/ring-ring</code> endpoint has returned the following: <code id="api"></code></p>
+
+  <script>
+    const xhr = new XMLHttpRequest();
+    const res = document.getElementById('api');
+    
+    xhr.onreadystatechange = res => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        api.innerText = JSON.stringify(JSON.parse(xhr.responseText));
+      }
+    };
+    
+    xhr.open('GET', '/ring-ring');
+    xhr.send();
+  </script>
+</body>
+</html>
+
