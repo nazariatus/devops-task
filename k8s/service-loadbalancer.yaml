@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name : node-app
-          image: nazariatus/my-node-app:latest
+          image: nazariatus/node:latest
           ports:
             - containerPort: 9007
 
