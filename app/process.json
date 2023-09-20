@@ -1,17 +1,21 @@
 {
-  "apps" : [{
-    "name": "api-server",
-    "script": "server.js",
-    "env_production" : {
-       "NODE_ENV": "production",
-       "API_PORT": 9007,
-       "API_VERSION": "0.0.1",
-    },
-    "watch": ["server.js"],
-    "watch_options": {
-      "ignoreInitial": true
-    },
-    "exec_mode": "cluster",
-    "instances": 4
-  }]
+  "apps": [
+    {
+      "name": "api-server",
+      "script": "server.js",
+      "env_production": {
+        "NODE_ENV": "production",
+        "API_PORT": 9007,
+        "API_VERSION": "0.0.1"
+      },
+      "watch": [
+        "server.js"
+      ],
+      "watch_options": {
+        "ignoreInitial": true
+      },
+      "exec_mode": "cluster",
+      "instances": 4
+    }
+  ]
 }
